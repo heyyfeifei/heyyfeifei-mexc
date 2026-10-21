@@ -46,7 +46,7 @@
 </head>
 <body class="bg-[#0b0e11] text-[#eaecef] min-h-screen flex flex-col selection:bg-[#00e5ff] selection:text-black">
 
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-[#181a20] border border-[#00e5ff] text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-[#181a20] border border-[#00e5ff] text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 pointer-events-none">
         <i class="fa-solid fa-circle-check text-[#00e5ff] text-xl"></i>
         <span id="toast-msg" class="font-medium text-sm">Copied to clipboard successfully!</span>
     </div>
@@ -57,7 +57,6 @@
             <div class="flex items-center gap-3 select-none cursor-pointer" onclick="handleLogoClick()" title="Click 5 times for Admin Mode">
                 <div class="relative group">
                     <div id="avatarContainer" class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#00e5ff] to-[#fcd535] flex items-center justify-center text-black font-black text-xl shadow-lg overflow-hidden border-2 border-[#00e5ff]/50">
-                        <img id="userAvatarImg" src="" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" alt="Avatar" class="w-full h-full object-cover hidden">
                         <span id="avatarFallback" class="font-black text-lg">F</span>
                     </div>
                 </div>
@@ -184,7 +183,6 @@
             </div>
         </section>
 
-        <!-- Edit Campaign Modal -->
         <div id="editCampaignModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
             <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-5 shadow-2xl">
                 <div class="flex items-center justify-between border-b border-[#23272e] pb-3">
@@ -211,6 +209,14 @@
                             <label class="block text-xs text-gray-400 mb-1 font-semibold">Poster Image URL</label>
                             <input type="text" id="editCampImage" placeholder="https://..." class="w-full bg-[#0b0e11] border border-[#23272e] rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-[#00e5ff]">
                         </div>
+                    </div>
+
+                    <!-- Option A File Drag and Drop / Image Upload Section -->
+                    <div class="bg-[#0b0e11] border border-dashed border-[#23272e] rounded-xl p-4 text-center space-y-2">
+                        <i class="fa-solid fa-cloud-arrow-up text-2xl text-[#00e5ff]"></i>
+                        <p class="text-xs text-gray-300 font-medium">Drag & drop poster image here, or <label for="imageFileInput" class="text-[#00e5ff] cursor-pointer hover:underline">browse file</label></p>
+                        <input type="file" id="imageFileInput" accept="image/*" class="hidden" onchange="handleImageFileUpload(event)">
+                        <p class="text-[10px] text-gray-500">Need a permanent image link? Upload to <a href="https://imgbb.com" target="_blank" class="text-[#fcd535] hover:underline">ImgBB</a> and paste the link above.</p>
                     </div>
 
                     <div>
@@ -497,7 +503,7 @@
         let logoClickCount = 0;
         let logoClickTimer = null;
 
-        // Admin mode detection
+        // Admin mode detection & Management
         function checkAdminMode() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('admin') === 'true' || localStorage.getItem('feifei_admin_mode') === 'true') {
@@ -510,8 +516,10 @@
             localStorage.setItem('feifei_admin_mode', 'true');
             const adminControls = document.getElementById('adminControls');
             const adminBadge = document.getElementById('adminBadge');
-            if (adminControls) adminControls.classList.remove('hidden');
-            if (adminControls) adminControls.classList.add('flex');
+            if (adminControls) {
+                adminControls.classList.remove('hidden');
+                adminControls.classList.add('flex');
+            }
             if (adminBadge) adminBadge.classList.remove('hidden');
             showToast('Admin Mode Enabled! You can now edit/add campaigns.');
         }
@@ -716,6 +724,18 @@
             container.appendChild(div);
         }
 
+        function handleImageFileUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                document.getElementById('editCampImage').value = evt.target.result;
+                showToast('Image file loaded successfully!');
+            };
+            reader.readAsDataURL(file);
+        }
+
         function saveCampaignChanges() {
             const camp = campaigns.find(c => c.id === activeCampaignId);
             if (!camp) return;
@@ -784,7 +804,7 @@
             localStorage.setItem('feifei_campaigns_data', JSON.stringify(campaigns));
         }
 
-        // Utilities
+        // Helper Utilities
         function escapeHtml(str) {
             if (!str) return '';
             return String(str)
@@ -838,7 +858,7 @@
             }, 3000);
         }
 
-        // Calculator
+        // Calculator Logic
         let currentMarket = 'futures';
         function setMarket(market) {
             currentMarket = market;
@@ -882,6 +902,7 @@
             `;
         }
 
+        // Lifecycle Hooks
         window.addEventListener('DOMContentLoaded', () => {
             checkAdminMode();
             initCampaigns();
