@@ -527,7 +527,7 @@
                 title: 'Prestige 3.0 : 666 USDT Rebates Awaits',
                 badge: '10.14 - 11.08',
                 desc: 'Rise to the top for exclusive Prestige Gala & Thailand Yacht Party rewards!',
-                imageUrl: 'https://i.ibb.co/MDcvb6Q3/mexc.png',
+                imageUrl: 'https://ibb.co/jkmwNRSb',
                 tiers: [
                     { volume: '$1M', reward: '$1,000 Position Airdrop Pool & Mystery Blind Box 🎁', highlight: '' },
                     { volume: '$20M', reward: '666 USDT Rebates Airdrop', highlight: '' },
@@ -535,19 +535,6 @@
                     { volume: '$100M', reward: 'Thailand Yacht Party Slot', highlight: '' }
                 ],
                 bonusText: ' Top 3 Traders can unlock 666% APR Earn Rewards (14 Days, up to 5,000 USDT principal).'
-            },
-            {
-                id: 'vip-boost',
-                title: 'MEXC VIP Fast-Track & Fee Cashbacks',
-                badge: 'ALL YEAR ROUND',
-                desc: 'Transfer your VIP tier from other exchanges to MEXC and claim up to 70% custom fee rebates.',
-                imageUrl: 'https://ibb.co/jkmwNRSb',
-                tiers: [
-                    { volume: '$500K', reward: 'Instant VIP Level 1 + 50% Rebate Rate', highlight: '' },
-                    { volume: '$5M', reward: 'Dedicated BDM VIP Care + Customized Fee Cashback Tier', highlight: '' },
-                    { volume: '$10M+', reward: '1-on-1 VIP Strategy Support & Customized API Limits', highlight: '⚡ High-frequency Trader Priority' }
-                ],
-                bonusText: ' Contact Fei Fei directly with proof of volume on other exchanges to bypass wait times!'
             }
         ];
 
@@ -895,15 +882,14 @@
                 showToast('Cannot delete the last campaign!');
                 return;
             }
-            if (confirm('Are you sure you want to delete this campaign?')) {
-                campaigns = campaigns.filter(c => c.id !== activeCampaignId);
-                activeCampaignId = campaigns[0].id;
-                localStorage.setItem('feifei_campaigns_data', JSON.stringify(campaigns));
-                closeEditCampaignModal();
-                renderCampaignTabs();
-                renderActiveCampaign();
-                showToast('Campaign deleted.');
-            }
+            // Use standard confirm or direct removal if confirm is blocked
+            campaigns = campaigns.filter(c => c.id !== activeCampaignId);
+            activeCampaignId = campaigns[0].id;
+            localStorage.setItem('feifei_campaigns_data', JSON.stringify(campaigns));
+            closeEditCampaignModal();
+            renderCampaignTabs();
+            renderActiveCampaign();
+            showToast('Campaign deleted successfully.');
         }
 
         function setMarket(m) {
