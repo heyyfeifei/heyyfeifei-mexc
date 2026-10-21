@@ -53,21 +53,19 @@
 
     <header class="sticky top-0 z-40 bg-[#0b0e11]/90 backdrop-blur-md border-b border-[#23272e]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo & Title with Avatar Uploader -->
-            <div class="flex items-center gap-3">
-                <div class="relative group cursor-pointer" onclick="openAvatarModal()" title="Click to change your avatar">
+            <!-- Logo & Title (Click logo 5 times to toggle Admin Mode) -->
+            <div class="flex items-center gap-3 select-none cursor-pointer" onclick="handleLogoClick()" title="Click 5 times for Admin Mode">
+                <div class="relative group">
                     <div id="avatarContainer" class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#00e5ff] to-[#fcd535] flex items-center justify-center text-black font-black text-xl shadow-lg overflow-hidden border-2 border-[#00e5ff]/50">
                         <img id="userAvatarImg" src="" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" alt="Avatar" class="w-full h-full object-cover hidden">
                         <span id="avatarFallback" class="font-black text-lg">F</span>
-                    </div>
-                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition rounded-2xl flex items-center justify-center text-white text-xs">
-                        <i class="fa-solid fa-camera"></i>
                     </div>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
                         <span class="font-extrabold text-lg tracking-tight text-white">MEXC</span>
                         <span class="text-xs px-2 py-0.5 rounded bg-[#fcd535]/10 text-[#fcd535] font-bold border border-[#fcd535]/30">VIP BDM</span>
+                        <span id="adminBadge" class="hidden text-[10px] px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-extrabold border border-red-500/40">ADMIN MODE</span>
                     </div>
                     <p class="text-xs text-gray-400 font-medium">Fei Fei (菲菲) • Global Business Development</p>
                 </div>
@@ -75,7 +73,6 @@
 
             <!-- Socials & Controls -->
             <div class="flex items-center gap-3 sm:gap-4">
-                <!-- Social Icons: X & TikTok -->
                 <div class="flex items-center gap-2">
                     <a href="https://twitter.com/feifei_mexc" target="_blank" class="w-9 h-9 rounded-xl bg-[#181a20] border border-[#23272e] flex items-center justify-center text-gray-300 hover:text-[#00e5ff] hover:border-[#00e5ff] transition" title="X (Twitter)">
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -88,16 +85,6 @@
                     </a>
                 </div>
 
-                <!-- Language Selector -->
-                <select id="langSelect" class="bg-[#181a20] border border-[#23272e] text-xs font-medium text-gray-300 rounded-lg px-3 py-2 outline-none focus:border-[#00e5ff] cursor-pointer">
-                    <option value="en">English (Primary)</option>
-                    <option value="zh">English + 中文 (Bilingual)</option>
-                    <option value="zh-tw">繁體中文</option>
-                    <option value="ja">日本語</option>
-                    <option value="ko">한국어</option>
-                    <option value="vi">Tiếng Việt</option>
-                </select>
-
                 <a href="https://t.me/feifeiS_MEXC_AffiliateBDM" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#00e5ff] to-[#00b8d4] text-black font-bold text-xs hover:opacity-90 transition shadow-md">
                     <i class="fa-brands fa-telegram"></i> Connect Now
                 </a>
@@ -107,7 +94,6 @@
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12">
 
-        <!-- Hero Section -->
         <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#181a20] to-[#0b0e11] border border-[#23272e] p-6 sm:p-10 glow-cyan">
             <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-[#00e5ff]/5 rounded-full blur-3xl pointer-events-none"></div>
             <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -128,33 +114,10 @@
                             <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-white flex items-center gap-2">
                                 Futures <span class="text-[#00e5ff] font-bold">• 1,500+ Pairs</span>
                             </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                Copy Trading
-                            </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                Stock futures
-                            </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                tokenized stocks
-                            </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                RealStocks
-                            </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                Prediction Markets
-                            </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                Convert
-                            </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                P2P
-                            </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                Earn
-                            </span>
-                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">
-                                Launchpool
-                            </span>
+                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">Copy Trading</span>
+                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">Prediction Markets</span>
+                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">P2P</span>
+                            <span class="px-3.5 py-2 rounded-xl bg-[#181a20] border border-[#23272e] text-xs font-semibold text-gray-200">Earn / Launchpool</span>
                         </div>
                     </div>
 
@@ -163,12 +126,11 @@
                             <i class="fa-brands fa-telegram text-base"></i> Message Telegram (@feifeiS_MEXC_AffiliateBDM)
                         </a>
                         <a href="#campaign" class="px-6 py-3 rounded-xl bg-[#181a20] border border-[#23272e] text-white font-bold text-sm hover:bg-[#2b313a] transition flex items-center gap-2">
-                            <i class="fa-solid fa-trophy text-[#fcd535]"></i> Prestige 3.0 Campaign
+                            <i class="fa-solid fa-trophy text-[#fcd535]"></i> VIP Exclusive Campaigns
                         </a>
                     </div>
                 </div>
 
-                <!-- Quick Stats Box -->
                 <div class="lg:col-span-5 grid grid-cols-2 gap-4">
                     <div class="bg-[#0b0e11]/80 border border-[#23272e] p-5 rounded-2xl">
                         <div class="text-[#00e5ff] font-extrabold text-2xl sm:text-3xl mb-1">#9</div>
@@ -200,33 +162,34 @@
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-white">MEXC VIP Exclusive Campaigns</h2>
                     </div>
                     
-                    <!-- Action Buttons for Multi-Campaign Management -->
-                    <div class="flex items-center gap-2">
+                    <!-- Admin Action Buttons (Hidden by default, shown when isAdmin === true) -->
+                    <div id="adminControls" class="hidden items-center gap-2">
                         <button onclick="openEditCampaignModal()" class="px-3.5 py-2 rounded-xl bg-[#00e5ff]/10 border border-[#00e5ff]/40 text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold text-xs transition flex items-center gap-1.5 shadow-md">
-                            <i class="fa-solid fa-pen-to-square"></i> 编辑当前活动 / Edit
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Campaign
                         </button>
                         <button onclick="createNewCampaign()" class="px-3.5 py-2 rounded-xl bg-[#fcd535]/10 border border-[#fcd535]/40 text-[#fcd535] hover:bg-[#fcd535] hover:text-black font-bold text-xs transition flex items-center gap-1.5 shadow-md">
-                            <i class="fa-solid fa-plus"></i> 新增活动 / New
+                            <i class="fa-solid fa-plus"></i> New Campaign
                         </button>
                     </div>
                 </div>
 
                 <!-- Campaign Tabs Nav -->
                 <div id="campaignTabs" class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
-                    <!-- Dynamic tabs will be rendered here -->
+                    <!-- Dynamic tabs rendered here -->
                 </div>
             </div>
 
             <div id="activeCampaignContainer" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <!-- Content generated dynamically via JavaScript -->
+                <!-- Content injected via JavaScript -->
             </div>
         </section>
 
+        <!-- Edit Campaign Modal -->
         <div id="editCampaignModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
             <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-5 shadow-2xl">
                 <div class="flex items-center justify-between border-b border-[#23272e] pb-3">
                     <h3 class="font-bold text-white text-base flex items-center gap-2">
-                        <i class="fa-solid fa-[#00e5ff] fa-sliders"></i> 编辑活动内容 / Campaign Editor
+                        <i class="fa-solid fa-sliders text-[#00e5ff]"></i> Campaign Editor
                     </h3>
                     <button onclick="closeEditCampaignModal()" class="text-gray-400 hover:text-white text-sm">
                         <i class="fa-solid fa-xmark text-lg"></i>
@@ -235,47 +198,44 @@
 
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-xs text-gray-400 mb-1 font-semibold">活动名称 / Campaign Title</label>
+                        <label class="block text-xs text-gray-400 mb-1 font-semibold">Campaign Title</label>
                         <input type="text" id="editCampTitle" class="w-full bg-[#0b0e11] border border-[#23272e] rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-[#00e5ff]">
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs text-gray-400 mb-1 font-semibold">活动时间 / Date Range</label>
+                            <label class="block text-xs text-gray-400 mb-1 font-semibold">Date Range Badge</label>
                             <input type="text" id="editCampDate" placeholder="10.14 - 11.08" class="w-full bg-[#0b0e11] border border-[#23272e] rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-[#00e5ff]">
                         </div>
                         <div>
-                            <label class="block text-xs text-gray-400 mb-1 font-semibold">活动海报图片 URL / Poster Image URL</label>
+                            <label class="block text-xs text-gray-400 mb-1 font-semibold">Poster Image URL</label>
                             <input type="text" id="editCampImage" placeholder="https://..." class="w-full bg-[#0b0e11] border border-[#23272e] rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-[#00e5ff]">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs text-gray-400 mb-1 font-semibold">活动副标题与简介 / Subtitle & Description</label>
+                        <label class="block text-xs text-gray-400 mb-1 font-semibold">Subtitle & Description</label>
                         <textarea id="editCampDesc" rows="2" class="w-full bg-[#0b0e11] border border-[#23272e] rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-[#00e5ff]"></textarea>
                     </div>
 
-                    <!-- Tiers Editor -->
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
-                            <label class="text-xs text-gray-300 font-bold">奖励阶梯 / Volume Milestone Tiers</label>
+                            <label class="text-xs text-gray-300 font-bold">Volume Milestone Tiers</label>
                             <button onclick="addTierInputRow()" class="text-[11px] text-[#00e5ff] hover:underline font-semibold flex items-center gap-1">
-                                <i class="fa-solid fa-plus"></i> 添加阶梯 / Add Tier
+                                <i class="fa-solid fa-plus"></i> Add Tier
                             </button>
                         </div>
-                        <div id="tiersEditList" class="space-y-2">
-                            <!-- Tier Rows injected here -->
-                        </div>
+                        <div id="tiersEditList" class="space-y-2"></div>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-between pt-4 border-t border-[#23272e]">
                     <button onclick="deleteCurrentCampaign()" class="px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500 hover:text-white font-bold text-xs transition">
-                        删除活动 / Delete
+                        Delete Campaign
                     </button>
                     <div class="flex gap-2">
-                        <button onclick="closeEditCampaignModal()" class="px-4 py-2.5 rounded-xl bg-[#0b0e11] text-gray-300 font-bold text-xs hover:bg-[#2b313a]">取消 / Cancel</button>
-                        <button onclick="saveCampaignChanges()" class="px-5 py-2.5 rounded-xl bg-[#00e5ff] text-black font-bold text-xs hover:bg-[#00b8d4]">保存活动修改 / Save</button>
+                        <button onclick="closeEditCampaignModal()" class="px-4 py-2.5 rounded-xl bg-[#0b0e11] text-gray-300 font-bold text-xs hover:bg-[#2b313a]">Cancel</button>
+                        <button onclick="saveCampaignChanges()" class="px-5 py-2.5 rounded-xl bg-[#00e5ff] text-black font-bold text-xs hover:bg-[#00b8d4]">Save Changes</button>
                     </div>
                 </div>
             </div>
@@ -284,11 +244,11 @@
         <section id="contact" class="space-y-6">
             <div class="text-center space-y-2">
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Official Verification & Contacts</h2>
-                <p class="text-sm text-gray-400">Always verify your BDM handles to avoid phishing scams on official MEXC verification portal.</p>
+                <p class="text-sm text-gray-400">Always verify your BDM handles on official MEXC verification portal to prevent phishing.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <!-- Telegram Card -->
+                <!-- Telegram -->
                 <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-5 space-y-4 hover:border-[#fcd535]/50 transition flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3">
@@ -310,11 +270,10 @@
                                 Verify <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
                         </div>
-                        <p class="text-[11px] text-gray-500 leading-tight">Enter this Telegram handle on the official verification page.</p>
                     </div>
                 </div>
 
-                <!-- X (Twitter) Card -->
+                <!-- X / Twitter -->
                 <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-5 space-y-4 hover:border-[#00e5ff]/50 transition flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3">
@@ -336,11 +295,10 @@
                                 Visit <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
                         </div>
-                        <p class="text-[11px] text-gray-500 leading-tight">Follow official X announcements & updates.</p>
                     </div>
                 </div>
 
-                <!-- TikTok Card -->
+                <!-- TikTok -->
                 <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-5 space-y-4 hover:border-[#00e5ff]/50 transition flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3">
@@ -362,11 +320,10 @@
                                 Visit <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
                         </div>
-                        <p class="text-[11px] text-gray-500 leading-tight">Follow official TikTok updates and campaign videos.</p>
                     </div>
                 </div>
 
-                <!-- Email Card -->
+                <!-- Email -->
                 <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-5 space-y-4 hover:border-[#fcd535]/50 transition flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3">
@@ -388,13 +345,11 @@
                                 Verify <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
                         </div>
-                        <p class="text-[11px] text-gray-500 leading-tight">Enter this email address on the official verification page.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- AI Smart Strategy & Fee Tier Calculator Section -->
         <section class="bg-[#181a20] border border-[#23272e] rounded-3xl p-6 sm:p-8 space-y-6">
             <div class="flex items-center justify-between border-b border-[#23272e] pb-4">
                 <div class="flex items-center gap-3">
@@ -403,19 +358,18 @@
                     </div>
                     <div>
                         <h3 class="font-extrabold text-white text-base">VIP Monthly Rebate Calculator <span class="text-xs text-gray-400 font-normal">/ 月度返佣计算器</span></h3>
-                        <p class="text-xs text-gray-400">Estimate your monthly trading fee savings based on volume & rebate rates. Contact Fei Fei for custom high-tier rates! (私聊 Fei Fei 定制专属高返佣)</p>
+                        <p class="text-xs text-gray-400">Estimate your monthly trading fee savings based on volume & rebate rates. Contact Fei Fei on TG for custom rates!</p>
                     </div>
                 </div>
                 <span class="text-xs px-2.5 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] font-semibold flex items-center gap-1">
-                    <i class="fa-solid fa-bolt"></i> Live Calculator / 实时计算
+                    <i class="fa-solid fa-bolt"></i> Live Calculator
                 </span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-                <!-- Input Controls -->
+                <!-- Inputs -->
                 <div class="md:col-span-5 space-y-5 bg-[#0b0e11] p-5 rounded-2xl border border-[#23272e] flex flex-col justify-between">
                     <div class="space-y-4">
-                        <!-- Volume Slider & Input -->
                         <div>
                             <div class="flex justify-between items-center mb-1.5">
                                 <label class="text-xs font-medium text-gray-400">Est. Monthly Volume <span class="text-[10px] text-gray-500">(预估月交易量)</span></label>
@@ -429,7 +383,6 @@
                             </div>
                         </div>
 
-                        <!-- Rebate Slider -->
                         <div>
                             <div class="flex justify-between items-center mb-1.5">
                                 <label class="text-xs font-medium text-gray-400">Rebate Percentage <span class="text-[10px] text-gray-500">(设定返佣比例)</span></label>
@@ -443,7 +396,6 @@
                             </div>
                         </div>
 
-                        <!-- Trading Market Selection -->
                         <div>
                             <label class="block text-xs font-medium text-gray-400 mb-1.5">Trading Product <span class="text-[10px] text-gray-500">(交易产品类型)</span></label>
                             <div class="grid grid-cols-2 gap-2">
@@ -462,7 +414,7 @@
                     </a>
                 </div>
 
-                <!-- Live Results -->
+                <!-- Outputs -->
                 <div class="md:col-span-7 bg-[#0b0e11] border border-[#23272e] rounded-2xl p-5 flex flex-col justify-between space-y-4">
                     <div>
                         <div class="flex items-center justify-between border-b border-[#23272e] pb-3 mb-4">
@@ -475,25 +427,23 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                             <div class="bg-[#181a20] p-4 rounded-xl border border-[#23272e]">
                                 <div class="text-[11px] text-gray-400 mb-0.5">Est. Monthly Cashback <span class="text-[10px] text-gray-500">(每月预估返还)</span></div>
-                                <div id="estSavingsDisplay" class="text-2xl sm:text-3xl font-extrabold text-[#0ecb81]">$500</div>
+                                <div id="estSavingsDisplay" class="text-2xl sm:text-3xl font-extrabold text-[#0ecb81]">$1,000</div>
                                 <div class="text-[10px] text-gray-500 mt-1">Direct savings returned to your account</div>
                             </div>
                             <div class="bg-[#181a20] p-4 rounded-xl border border-[#23272e]">
                                 <div class="text-[11px] text-gray-400 mb-0.5">Est. Total Monthly Fees <span class="text-[10px] text-gray-500">(预估月总手续费)</span></div>
-                                <div id="totalFeeDisplay" class="text-2xl sm:text-3xl font-extrabold text-[#fcd535]">$1,000</div>
+                                <div id="totalFeeDisplay" class="text-2xl sm:text-3xl font-extrabold text-[#fcd535]">$2,000</div>
                                 <div class="text-[10px] text-gray-500 mt-1">Based on standard MEXC baseline fee rates</div>
                             </div>
                         </div>
 
-                        <div id="perksSummary" class="bg-[#181a20] p-4 rounded-xl border border-[#23272e] space-y-2 text-xs text-gray-300">
-                            <!-- Populated dynamically via JavaScript -->
-                        </div>
+                        <div id="perksSummary" class="bg-[#181a20] p-4 rounded-xl border border-[#23272e] space-y-2 text-xs text-gray-300"></div>
                     </div>
 
                     <div class="pt-3 border-t border-[#23272e] flex flex-wrap items-center justify-between gap-2 text-xs text-gray-400">
                         <span>💡 Contact Fei Fei to unlock higher rebate tiers regardless of current volume!</span>
-                        <button onclick="copyToClipboard(document.getElementById('perksSummary').innerText, 'Summary copied to clipboard!')" class="text-[#00e5ff] hover:underline font-semibold flex items-center gap-1">
-                            <i class="fa-regular fa-copy"></i> Copy Summary / 复制摘要
+                        <button onclick="copyToClipboard(document.getElementById('perksSummary').innerText, 'Summary copied!')" class="text-[#00e5ff] hover:underline font-semibold flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Copy Summary
                         </button>
                     </div>
                 </div>
@@ -509,63 +459,8 @@
         </div>
     </footer>
 
-    <!-- Avatar Upload Modal -->
-    <div id="avatarModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-6 max-w-md w-full space-y-5 shadow-2xl">
-            <div class="flex items-center justify-between border-b border-[#23272e] pb-3">
-                <h3 class="font-bold text-white text-base flex items-center gap-2">
-                    <i class="fa-solid fa-user-gear text-[#00e5ff]"></i> Set Your Personal Avatar
-                </h3>
-                <button onclick="closeAvatarModal()" class="text-gray-400 hover:text-white text-sm">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-            <p class="text-xs text-gray-300">
-                Paste your image URL or upload an image file from your device:
-            </p>
-            <input type="text" id="customAvatarUrl" placeholder="https://example.com/avatar.jpg" class="w-full bg-[#0b0e11] border border-[#23272e] rounded-xl px-4 py-3 text-xs text-white outline-none focus:border-[#00e5ff]">
-            
-            <div class="flex items-center gap-3">
-                <label class="flex-1 py-2.5 rounded-xl bg-[#0b0e11] border border-[#23272e] text-center text-xs font-bold text-gray-300 hover:bg-[#2b313a] transition cursor-pointer">
-                    <i class="fa-solid fa-upload"></i> Upload File
-                    <input type="file" id="avatarFileInput" accept="image/*" class="hidden" onchange="handleAvatarFileUpload(event)">
-                </label>
-                <button onclick="applyCustomAvatar()" class="flex-1 py-2.5 rounded-xl bg-[#00e5ff] text-black font-bold text-xs hover:bg-[#00b8d4] transition">
-                    Apply Avatar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Campaign Banner Upload Modal -->
-    <div id="imageModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-6 max-w-md w-full space-y-5 shadow-2xl">
-            <div class="flex items-center justify-between border-b border-[#23272e] pb-3">
-                <h3 class="font-bold text-white text-base flex items-center gap-2">
-                    <i class="fa-solid fa-image text-[#00e5ff]"></i> Set Prestige 3.0 Campaign Banner
-                </h3>
-                <button onclick="closeImageModal()" class="text-gray-400 hover:text-white text-sm">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-            <p class="text-xs text-gray-300">
-                Paste your campaign poster image URL or upload from your device:
-            </p>
-            <input type="text" id="customImageUrl" placeholder="https://example.com/banner.jpg" class="w-full bg-[#0b0e11] border border-[#23272e] rounded-xl px-4 py-3 text-xs text-white outline-none focus:border-[#00e5ff]">
-            
-            <div class="flex items-center gap-3">
-                <label class="flex-1 py-2.5 rounded-xl bg-[#0b0e11] border border-[#23272e] text-center text-xs font-bold text-gray-300 hover:bg-[#2b313a] transition cursor-pointer">
-                    <i class="fa-solid fa-upload"></i> Upload Image File
-                    <input type="file" id="bannerFileInput" accept="image/*" class="hidden" onchange="handleBannerFileUpload(event)">
-                </label>
-                <button onclick="applyCustomImage()" class="flex-1 py-2.5 rounded-xl bg-[#00e5ff] text-black font-bold text-xs hover:bg-[#00b8d4] transition">
-                    Apply Banner
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script>
+        // Default Campaigns Data
         const defaultCampaigns = [
             {
                 id: 'prestige-3',
@@ -598,6 +493,58 @@
 
         let campaigns = [];
         let activeCampaignId = '';
+        let isAdmin = false;
+        let logoClickCount = 0;
+        let logoClickTimer = null;
+
+        // Admin mode detection
+        function checkAdminMode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === 'true' || localStorage.getItem('feifei_admin_mode') === 'true') {
+                enableAdminMode();
+            }
+        }
+
+        function enableAdminMode() {
+            isAdmin = true;
+            localStorage.setItem('feifei_admin_mode', 'true');
+            const adminControls = document.getElementById('adminControls');
+            const adminBadge = document.getElementById('adminBadge');
+            if (adminControls) adminControls.classList.remove('hidden');
+            if (adminControls) adminControls.classList.add('flex');
+            if (adminBadge) adminBadge.classList.remove('hidden');
+            showToast('Admin Mode Enabled! You can now edit/add campaigns.');
+        }
+
+        function disableAdminMode() {
+            isAdmin = false;
+            localStorage.removeItem('feifei_admin_mode');
+            const adminControls = document.getElementById('adminControls');
+            const adminBadge = document.getElementById('adminBadge');
+            if (adminControls) {
+                adminControls.classList.add('hidden');
+                adminControls.classList.remove('flex');
+            }
+            if (adminBadge) adminBadge.classList.add('hidden');
+            showToast('Admin Mode Disabled.');
+        }
+
+        function handleLogoClick() {
+            logoClickCount++;
+            clearTimeout(logoClickTimer);
+            if (logoClickCount >= 5) {
+                if (isAdmin) {
+                    disableAdminMode();
+                } else {
+                    enableAdminMode();
+                }
+                logoClickCount = 0;
+            } else {
+                logoClickTimer = setTimeout(() => {
+                    logoClickCount = 0;
+                }, 2000);
+            }
+        }
 
         function initCampaigns() {
             const saved = localStorage.getItem('feifei_campaigns_data');
@@ -666,7 +613,6 @@
             `).join('');
 
             container.innerHTML = `
-                <!-- Poster / Banner Column -->
                 <div class="lg:col-span-6 bg-[#181a20] border border-[#23272e] rounded-3xl p-4 sm:p-6 space-y-4 shadow-xl">
                     <div class="relative rounded-2xl overflow-hidden border border-[#23272e] bg-[#0b0e11] group min-h-[260px] flex items-center justify-center">
                         ${camp.imageUrl ? `
@@ -675,10 +621,7 @@
                             <div class="w-full h-80 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-[#181a20] to-[#0b0e11]">
                                 <i class="fa-solid fa-bullhorn text-5xl text-[#00e5ff] mb-3"></i>
                                 <h4 class="font-bold text-white text-base">${escapeHtml(camp.title)}</h4>
-                                <p class="text-xs text-gray-400 mt-1 mb-4">Click "Edit / 编辑" above to attach a custom poster banner for this campaign</p>
-                                <button onclick="openEditCampaignModal()" class="px-4 py-2 rounded-xl bg-[#00e5ff] text-black font-bold text-xs shadow-lg hover:bg-[#00b8d4] transition">
-                                    <i class="fa-solid fa-image"></i> Set Campaign Image
-                                </button>
+                                <p class="text-xs text-gray-400 mt-1 mb-4">Official VIP Promotional Event</p>
                             </div>
                         `}
                     </div>
@@ -690,13 +633,10 @@
                     </div>
                 </div>
 
-                <!-- Rewards & Details Column -->
                 <div class="lg:col-span-6 space-y-6">
                     <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-6 space-y-5">
                         <div class="border-b border-[#23272e] pb-4 space-y-1">
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-extrabold text-xl text-white">${escapeHtml(camp.title)}</h3>
-                            </div>
+                            <h3 class="font-extrabold text-xl text-white">${escapeHtml(camp.title)}</h3>
                             <p class="text-xs text-gray-400">${escapeHtml(camp.desc)}</p>
                         </div>
 
@@ -712,13 +652,12 @@
                         ` : ''}
                     </div>
 
-                    <!-- Inviter Rewards Callout -->
                     <div class="bg-[#181a20] border border-[#23272e] rounded-3xl p-6 space-y-4">
                         <div class="flex items-center gap-2 font-bold text-white text-base">
                             <i class="fa-solid fa-users text-[#00e5ff]"></i> Exclusive Referral Link
                         </div>
                         <p class="text-xs text-gray-300">
-                            Share your referral link with clients to participate in ${escapeHtml(camp.title)} rewards.
+                            Register through Fei Fei's link to qualify for campaign rewards.
                         </p>
                         
                         <div class="flex gap-2">
@@ -732,7 +671,7 @@
             `;
         }
 
-        // Editor Functions
+        // Campaign Editor
         function openEditCampaignModal() {
             const camp = campaigns.find(c => c.id === activeCampaignId);
             if (!camp) return;
@@ -802,7 +741,7 @@
             closeEditCampaignModal();
             renderCampaignTabs();
             renderActiveCampaign();
-            showToast('Campaign details updated successfully!');
+            showToast('Campaign details saved successfully!');
         }
 
         function createNewCampaign() {
@@ -845,7 +784,7 @@
             localStorage.setItem('feifei_campaigns_data', JSON.stringify(campaigns));
         }
 
-        // Utility function to sanitize HTML output and prevent XSS or undefined errors
+        // Utilities
         function escapeHtml(str) {
             if (!str) return '';
             return String(str)
@@ -856,7 +795,6 @@
                 .replace(/'/g, '&#039;');
         }
 
-        // Utility function to copy text to clipboard securely
         function copyToClipboard(text, msg) {
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(text).then(() => {
@@ -887,7 +825,6 @@
             document.body.removeChild(textArea);
         }
 
-        // Toast message display
         function showToast(message) {
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toast-msg');
@@ -901,39 +838,7 @@
             }, 3000);
         }
 
-        // Modal triggers for Avatars & Banners
-        function openAvatarModal() {
-            document.getElementById('avatarModal').classList.remove('hidden');
-        }
-        function closeAvatarModal() {
-            document.getElementById('avatarModal').classList.add('hidden');
-        }
-        function applyCustomAvatar() {
-            const url = document.getElementById('customAvatarUrl').value.trim();
-            if (url) {
-                document.getElementById('userAvatarImg').src = url;
-                document.getElementById('userAvatarImg').classList.remove('hidden');
-                document.getElementById('avatarFallback').classList.add('hidden');
-                closeAvatarModal();
-                showToast('Avatar updated!');
-            }
-        }
-        function handleAvatarFileUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('userAvatarImg').src = e.target.result;
-                    document.getElementById('userAvatarImg').classList.remove('hidden');
-                    document.getElementById('avatarFallback').classList.add('hidden');
-                    closeAvatarModal();
-                    showToast('Avatar uploaded!');
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Calculator Functions
+        // Calculator
         let currentMarket = 'futures';
         function setMarket(market) {
             currentMarket = market;
@@ -977,8 +882,8 @@
             `;
         }
 
-        // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
+            checkAdminMode();
             initCampaigns();
             updateCalculator();
         });
