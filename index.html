@@ -261,7 +261,7 @@
 
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
-                            <label class="text-xs text-gray-300 font-bold">Volume Milestone Tiers</label>
+                            <label class="text-xs text-gray-300 font-bold">Event & Milestone Requirement Tiers</label>
                             <button onclick="addTierInputRow()" class="text-[11px] text-[#00e5ff] hover:underline font-semibold flex items-center gap-1">
                                 <i class="fa-solid fa-plus"></i> Add Tier
                             </button>
@@ -653,10 +653,10 @@
                 desc: 'Rise to the top for exclusive Prestige Gala & Thailand Yacht Party rewards!',
                 imageUrl: 'https://ibb.co/jkmwNRSb',
                 tiers: [
-                    { volume: '$1M', reward: '$1,000 Position Airdrop Pool & Mystery Blind Box 🎁', highlight: '' },
-                    { volume: '$20M', reward: '666 USDT Rebates Airdrop', highlight: '' },
-                    { volume: '$50M', reward: '50g Gold Bar', highlight: '⚡ First come, first served' },
-                    { volume: '$100M', reward: 'Thailand Yacht Party Slot', highlight: '' }
+                    { label: 'Trading Volume Requirement', volume: '$1M', reward: '$1,000 Position Airdrop Pool & Mystery Blind Box 🎁', highlight: '' },
+                    { label: 'Trading Volume Requirement', volume: '$20M', reward: '666 USDT Rebates Airdrop', highlight: '' },
+                    { label: 'Trading Volume Requirement', volume: '$50M', reward: '50g Gold Bar', highlight: '⚡ First come, first served' },
+                    { label: 'Trading Volume Requirement', volume: '$100M', reward: 'Thailand Yacht Party Slot', highlight: '' }
                 ],
                 bonusText: ' Top 3 Traders can unlock 666% APR Earn Rewards (14 Days, up to 5,000 USDT principal).'
             },
@@ -667,10 +667,10 @@
                 desc: 'Exclusive GOLD Rewards! Complete deposit, trading, and referral tasks to win up to $1,288 GOLD.',
                 imageUrl: 'https://ibb.co/jkmwNRSb',
                 tiers: [
-                    { volume: 'Event 1', reward: 'Deposit ≥100 USDT & Spot DCA → Get up to $1,000 XAUT Gold Airdrop', highlight: '🥇 New User Deposit & DCA Bonus' },
-                    { volume: 'Event 2', reward: 'Trade Futures 5 days in a row (Daily vol ≥ $10K) → Get $300 Airdrop', highlight: '🥈 Consecutive Trading Challenge' },
-                    { volume: 'Event 3', reward: '$10M → 0.02 XAUT | $30M → 0.068 XAUT | $50M → 0.16 XAUT | $100M → $1,288 Gold', highlight: '🥉 Futures Volume Tier Rewards' },
-                    { volume: 'Event 4', reward: 'Invite 3/6/10/20 friends → Get up to 0.06 XAUT total', highlight: '🎁 Referral Airdrop (Open to all users)' }
+                    { label: 'New User Deposit Reward', volume: 'Event 1', reward: 'Deposit ≥100 USDT & Spot DCA → Get up to $1,000 XAUT Gold Airdrop', highlight: '🥇 New User Deposit & DCA Bonus' },
+                    { label: 'Daily Trading Reward', volume: 'Event 2', reward: 'Trade Futures 5 days in a row (Daily vol ≥ $10K) → Get $300 Airdrop', highlight: '🥈 Consecutive Trading Challenge' },
+                    { label: 'Futures Trading Reward', volume: 'Event 3', reward: '$10M → 0.02 XAUT | $30M → 0.068 XAUT | $50M → 0.16 XAUT | $100M → $1,288 Gold', highlight: '🥉 Futures Volume Tier Rewards' },
+                    { label: 'Invite Friends & Earn GOLD', volume: 'Event 4', reward: 'Invite 3/6/10/20 friends → Get up to 0.06 XAUT total', highlight: '🎁 Referral Airdrop (Open to all users)' }
                 ],
                 bonusText: ' Note: Terms & Conditions apply as per official MEXC rules. Contact Fei Fei (@feifeiS_MEXC_AffiliateBDM) for exclusive rebate links & VIP support!'
             }
@@ -825,7 +825,7 @@
                             ${escapeHtml(t.volume)}
                         </div>
                         <div>
-                            <div class="text-xs text-gray-400">Trading Volume Requirement</div>
+                            <div class="text-xs text-gray-400 font-medium">${escapeHtml(t.label || 'Requirement')}</div>
                             <div class="font-bold text-white text-sm sm:text-base">${escapeHtml(t.reward)}</div>
                             ${t.highlight ? `<div class="text-[11px] text-[#fcd535] font-medium mt-0.5">${escapeHtml(t.highlight)}</div>` : ''}
                         </div>
@@ -929,41 +929,28 @@
             if (!listContainer) return;
 
             listContainer.innerHTML = tiers.map((t, idx) => `
-                <div class="grid grid-cols-12 gap-2 items-center bg-[#0b0e11] p-2.5 rounded-xl border border-[#23272e]">
-                    <div class="col-span-3">
-                        <input type="text" value="${escapeHtml(t.volume)}" placeholder="$1M" class="tier-vol-input w-full bg-[#181a20] border border-[#23272e] rounded-lg px-2.5 py-1.5 text-xs text-white outline-none focus:border-[#00e5ff]">
+                <div class="space-y-2 bg-[#0b0e11] p-3 rounded-xl border border-[#23272e]">
+                    <div class="grid grid-cols-12 gap-2 items-center">
+                        <div class="col-span-3">
+                            <label class="block text-[10px] text-gray-500 mb-0.5">Tag/Badge</label>
+                            <input type="text" value="${escapeHtml(t.volume)}" placeholder="Event 1" class="tier-vol-input w-full bg-[#181a20] border border-[#23272e] rounded-lg px-2.5 py-1.5 text-xs text-white outline-none focus:border-[#00e5ff]">
+                        </div>
+                        <div class="col-span-8">
+                            <label class="block text-[10px] text-gray-500 mb-0.5">Requirement Label (描述标签)</label>
+                            <input type="text" value="${escapeHtml(t.label || 'Requirement')}" placeholder="Deposit Requirement / 充值要求" class="tier-label-input w-full bg-[#181a20] border border-[#23272e] rounded-lg px-2.5 py-1.5 text-xs text-white outline-none focus:border-[#00e5ff]">
+                        </div>
+                        <div class="col-span-1 text-right pt-4">
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-500 hover:text-red-400 text-xs">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-span-8">
-                        <input type="text" value="${escapeHtml(t.reward)}" placeholder="Reward description" class="tier-reward-input w-full bg-[#181a20] border border-[#23272e] rounded-lg px-2.5 py-1.5 text-xs text-white outline-none focus:border-[#00e5ff]">
-                    </div>
-                    <div class="col-span-1 text-right">
-                        <button onclick="this.parentElement.parentElement.remove()" class="text-gray-500 hover:text-red-400 text-xs">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                    <div>
+                        <label class="block text-[10px] text-gray-500 mb-0.5">Reward Description</label>
+                        <input type="text" value="${escapeHtml(t.reward)}" placeholder="Reward details" class="tier-reward-input w-full bg-[#181a20] border border-[#23272e] rounded-lg px-2.5 py-1.5 text-xs text-white outline-none focus:border-[#00e5ff]">
                     </div>
                 </div>
             `).join('');
-        }
-
-        function addTierInputRow() {
-            const listContainer = document.getElementById('tiersEditList');
-            if (!listContainer) return;
-            const div = document.createElement('div');
-            div.className = "grid grid-cols-12 gap-2 items-center bg-[#0b0e11] p-2.5 rounded-xl border border-[#23272e]";
-            div.innerHTML = `
-                <div class="col-span-3">
-                    <input type="text" placeholder="$10M" class="tier-vol-input w-full bg-[#181a20] border border-[#23272e] rounded-lg px-2.5 py-1.5 text-xs text-white outline-none focus:border-[#00e5ff]">
-                </div>
-                <div class="col-span-8">
-                    <input type="text" placeholder="Reward details" class="tier-reward-input w-full bg-[#181a20] border border-[#23272e] rounded-lg px-2.5 py-1.5 text-xs text-white outline-none focus:border-[#00e5ff]">
-                </div>
-                <div class="col-span-1 text-right">
-                    <button onclick="this.parentElement.parentElement.remove()" class="text-gray-500 hover:text-red-400 text-xs">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            `;
-            listContainer.appendChild(div);
         }
 
         function saveCampaignChanges() {
@@ -976,14 +963,16 @@
             camp.desc = document.getElementById('editCampDesc').value.trim();
 
             const volInputs = document.querySelectorAll('.tier-vol-input');
+            const labelInputs = document.querySelectorAll('.tier-label-input');
             const rewardInputs = document.querySelectorAll('.tier-reward-input');
             const newTiers = [];
 
             volInputs.forEach((vIn, idx) => {
                 const volVal = vIn.value.trim();
+                const lVal = labelInputs[idx]?.value.trim();
                 const rVal = rewardInputs[idx]?.value.trim();
-                if (volVal || rVal) {
-                    newTiers.push({ volume: volVal || 'Requirement', reward: rVal || 'Special Bonus', highlight: '' });
+                if (volVal || rVal || lVal) {
+                    newTiers.push({ volume: volVal || 'Requirement', label: lVal || 'Requirement', reward: rVal || 'Special Bonus', highlight: '' });
                 }
             });
 
@@ -1004,7 +993,7 @@
                 desc: 'Special promotional campaign for VIP partners and traders.',
                 imageUrl: '',
                 tiers: [
-                    { volume: '$1M', reward: 'Special Airdrop Bonus', highlight: '' }
+                    { label: 'Trading Volume Requirement / 交易量要求', volume: '$1M', reward: 'Special Airdrop Bonus', highlight: '' }
                 ],
                 bonusText: ' Contact Fei Fei to participate!'
             };
