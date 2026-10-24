@@ -70,6 +70,41 @@
             </div>
 
             <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Language Selector Dropdown -->
+                <div class="relative group" id="langSelector">
+                    <button class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#181a20] border border-[#23272e] hover:border-[#00e5ff]/50 text-xs text-gray-300 font-semibold transition">
+                        <span id="currentLangFlag">🌐</span>
+                        <span id="currentLangName">English</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-44 rounded-2xl bg-[#181a20] border border-[#23272e] shadow-2xl p-1.5 space-y-1 hidden group-hover:block z-50">
+                        <button onclick="changeLanguage('en')" class="w-full text-left px-3 py-2 rounded-xl text-xs hover:bg-[#00e5ff]/10 hover:text-[#00e5ff] transition flex items-center justify-between font-medium">
+                            <span class="flex items-center gap-2"><span>🇺🇸</span> English</span>
+                            <i class="fa-solid fa-check text-[10px] text-[#00e5ff] lang-check" id="check-en"></i>
+                        </button>
+                        <button onclick="changeLanguage('zh')" class="w-full text-left px-3 py-2 rounded-xl text-xs hover:bg-[#00e5ff]/10 hover:text-[#00e5ff] transition flex items-center justify-between font-medium">
+                            <span class="flex items-center gap-2"><span>🇨🇳</span> 华语 (Chinese)</span>
+                            <i class="fa-solid fa-check text-[10px] text-[#00e5ff] lang-check hidden" id="check-zh"></i>
+                        </button>
+                        <button onclick="changeLanguage('th')" class="w-full text-left px-3 py-2 rounded-xl text-xs hover:bg-[#00e5ff]/10 hover:text-[#00e5ff] transition flex items-center justify-between font-medium">
+                            <span class="flex items-center gap-2"><span>🇹🇭</span> ไทย (Thai)</span>
+                            <i class="fa-solid fa-check text-[10px] text-[#00e5ff] lang-check hidden" id="check-th"></i>
+                        </button>
+                        <button onclick="changeLanguage('ja')" class="w-full text-left px-3 py-2 rounded-xl text-xs hover:bg-[#00e5ff]/10 hover:text-[#00e5ff] transition flex items-center justify-between font-medium">
+                            <span class="flex items-center gap-2"><span>🇯🇵</span> 日本語 (Japanese)</span>
+                            <i class="fa-solid fa-check text-[10px] text-[#00e5ff] lang-check hidden" id="check-ja"></i>
+                        </button>
+                        <button onclick="changeLanguage('my')" class="w-full text-left px-3 py-2 rounded-xl text-xs hover:bg-[#00e5ff]/10 hover:text-[#00e5ff] transition flex items-center justify-between font-medium">
+                            <span class="flex items-center gap-2"><span>🇲🇲</span> မြန်မာ (Myanmar)</span>
+                            <i class="fa-solid fa-check text-[10px] text-[#00e5ff] lang-check hidden" id="check-my"></i>
+                        </button>
+                        <button onclick="changeLanguage('km')" class="w-full text-left px-3 py-2 rounded-xl text-xs hover:bg-[#00e5ff]/10 hover:text-[#00e5ff] transition flex items-center justify-between font-medium">
+                            <span class="flex items-center gap-2"><span>🇰🇭</span> ភាសាខ្មែរ (Cambodia)</span>
+                            <i class="fa-solid fa-check text-[10px] text-[#00e5ff] lang-check hidden" id="check-km"></i>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="flex items-center gap-2">
                     <a href="https://twitter.com/feifei_mexc" target="_blank" class="w-9 h-9 rounded-xl bg-[#181a20] border border-[#23272e] flex items-center justify-center text-gray-300 hover:text-[#00e5ff] hover:border-[#00e5ff] transition" title="X (Twitter)">
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -521,13 +556,102 @@
     </footer>
 
     <script>
+        // Language dictionaries
+        const translations = {
+            en: {
+                flag: '🇺🇸', name: 'English',
+                partnerBadge: 'Official MEXC Strategic Partner & BDM',
+                welcome: 'Welcome to Fei Fei\'s VIP Crypto Portal',
+                explore: 'Explore MEXC Products',
+                btnConnect: 'Message Telegram (@feifeiS_MEXC_AffiliateBDM)',
+                btnCampaign: 'VIP Exclusive Campaigns',
+                campaignHeader: 'MEXC VIP Exclusive Campaigns',
+                calcTitle: 'VIP Monthly Rebate Calculator',
+                calcDesc: 'Estimate your monthly trading fee savings based on volume & rebate rates.'
+            },
+            zh: {
+                flag: '🇨🇳', name: '华语',
+                partnerBadge: 'MEXC 官方战略合作伙伴与 BDM',
+                welcome: '欢迎来到 菲菲 (Fei Fei) VIP 加密门户',
+                explore: '探索 MEXC 产品',
+                btnConnect: '联系 Telegram (@feifeiS_MEXC_AffiliateBDM)',
+                btnCampaign: 'VIP 专属特惠活动',
+                campaignHeader: 'MEXC VIP 独家独享活动专区',
+                calcTitle: 'VIP 月度返佣计算器',
+                calcDesc: '根据交易量和返佣比例预估您的每月交易手续费节省。'
+            },
+            th: {
+                flag: '🇹🇭', name: 'ไทย',
+                partnerBadge: 'พันธมิตรทางยุทธศาสตร์อย่างเป็นทางการของ MEXC & BDM',
+                welcome: 'ยินดีต้อนรับสู่ Fei Fei VIP Crypto Portal',
+                explore: 'สำรวจผลิตภัณฑ์ MEXC',
+                btnConnect: 'ส่งข้อความ Telegram (@feifeiS_MEXC_AffiliateBDM)',
+                btnCampaign: 'แคมเปญพิเศษ VIP',
+                campaignHeader: 'แคมเปญพิเศษเฉพาะ MEXC VIP',
+                calcTitle: 'เครื่องคำนวณส่วนลดรายเดือน VIP',
+                calcDesc: 'ประเมินการประหยัดค่าธรรมเนียมการเทรดรายเดือนตามวอลลุ่มและอัตรารีเบท'
+            },
+            ja: {
+                flag: '🇯🇵', name: '日本語',
+                partnerBadge: 'MEXC 公式戦略パートナー & BDM',
+                welcome: 'Fei Fei VIP 暗号資産ポータルへようこそ',
+                explore: 'MEXC 製品を見る',
+                btnConnect: 'Telegramメッセージ (@feifeiS_MEXC_AffiliateBDM)',
+                btnCampaign: 'VIP 限定キャンペーン',
+                campaignHeader: 'MEXC VIP 限定特別キャンペーン',
+                calcTitle: 'VIP 月次キャッシュバック計算機',
+                calcDesc: '取引高とキャッシュバック率に基づいて毎月の手数料節約額を試算します。'
+            },
+            my: {
+                flag: '🇲🇲', name: 'မြန်မာ',
+                partnerBadge: 'MEXC တရားဝင် မဟာဗျူဟာမြောက် မိတ်ဖက် & BDM',
+                welcome: 'Fei Fei VIP Crypto Portal မှ ကြိုဆိုပါသည်',
+                explore: 'MEXC ထုတ်ကုန်များကို လေ့လာပါ',
+                btnConnect: 'Telegram မက်ဆေ့ခ်ျပို့ပါ (@feifeiS_MEXC_AffiliateBDM)',
+                btnCampaign: 'VIP အထူး ကမ်ပိန်းများ',
+                campaignHeader: 'MEXC VIP သီးသန့် ကမ်ပိန်းများ',
+                calcTitle: 'VIP လစဉ် ပြန်အမ်းငွေ တွက်ချက်စက်',
+                calcDesc: 'ကုန်သွယ်မှု ပမာဏနှင့် ပြန်အမ်းငွေ နှုန်းထားပေါ် မူတည်၍ လစဉ် သက်သာသော ကော်မရှင်ကို တွက်ချက်ပါ။'
+            },
+            km: {
+                flag: '🇰🇭', name: 'ភាសាខ្មែរ',
+                partnerBadge: 'ដៃគូយុទ្ធសាស្ត្រផ្លូវការ MEXC & BDM',
+                welcome: 'សូមស្វាគមន៍មកកាន់ Fei Fei VIP Crypto Portal',
+                explore: 'ស្វែងយល់ពីផលិតផល MEXC',
+                btnConnect: 'ផ្ញើសារ Telegram (@feifeiS_MEXC_AffiliateBDM)',
+                btnCampaign: 'យុទ្ធនាការពិសេស VIP',
+                campaignHeader: 'យុទ្ធនាការពិសេសសម្រាប់តែ MEXC VIP',
+                calcTitle: 'ម៉ាស៊ីនគណនាប្រាក់ត្រឡប់មកវិញប្រចាំខែ VIP',
+                calcDesc: 'ប៉ាន់ប្រមាណការសន្សំថ្លៃសេវាជួញដូរប្រចាំខែរបស់អ្នកផ្អែកលើទំហំ និងអត្រាការប្រាក់។'
+            }
+        };
+
+        let currentLang = 'en';
+
+        function changeLanguage(langKey) {
+            if (!translations[langKey]) return;
+            currentLang = langKey;
+            const lang = translations[langKey];
+
+            // Update Header Display
+            document.getElementById('currentLangFlag').innerText = lang.flag;
+            document.getElementById('currentLangName').innerText = lang.name;
+
+            // Update Checkmarks
+            document.querySelectorAll('.lang-check').forEach(el => el.classList.add('hidden'));
+            const checkEl = document.getElementById('check-' + langKey);
+            if (checkEl) checkEl.classList.remove('hidden');
+
+            showToast('Language changed to ' + lang.name);
+        }
+
         const defaultCampaigns = [
             {
                 id: 'prestige-3',
-                title: 'Prestige 3.0 : 666 USDT Rebates Awaits',
+                title: 'Prestige 3.0: 666 USDT Rebates Awaits',
                 badge: '10.14 - 11.08',
                 desc: 'Rise to the top for exclusive Prestige Gala & Thailand Yacht Party rewards!',
-                imageUrl: 'https://i.ibb.co/MDcvb6Q3/mexc.png',
+                imageUrl: 'https://ibb.co/jkmwNRSb',
                 tiers: [
                     { volume: '$1M', reward: '$1,000 Position Airdrop Pool & Mystery Blind Box 🎁', highlight: '' },
                     { volume: '$20M', reward: '666 USDT Rebates Airdrop', highlight: '' },
@@ -535,6 +659,20 @@
                     { volume: '$100M', reward: 'Thailand Yacht Party Slot', highlight: '' }
                 ],
                 bonusText: ' Top 3 Traders can unlock 666% APR Earn Rewards (14 Days, up to 5,000 USDT principal).'
+            },
+            {
+                id: 'gold-fever-2026',
+                title: 'Gold Fever: Earn $1,288 in GOLD Cashback',
+                badge: 'GOLD PROMO',
+                desc: 'Exclusive GOLD Rewards! Complete deposit, trading, and referral tasks to win up to $1,288 GOLD.',
+                imageUrl: 'https://ibb.co/jkmwNRSb',
+                tiers: [
+                    { volume: 'Event 1', reward: 'Deposit ≥100 USDT & Spot DCA → Get up to $1,000 XAUT Gold Airdrop', highlight: '🥇 New User Deposit & DCA Bonus' },
+                    { volume: 'Event 2', reward: 'Trade Futures 5 days in a row (Daily vol ≥ $10K) → Get $300 Airdrop', highlight: '🥈 Consecutive Trading Challenge' },
+                    { volume: 'Event 3', reward: '$10M → 0.02 XAUT | $30M → 0.068 XAUT | $50M → 0.16 XAUT | $100M → $1,288 Gold', highlight: '🥉 Futures Volume Tier Rewards' },
+                    { volume: 'Event 4', reward: 'Invite 3/6/10/20 friends → Get up to 0.06 XAUT total', highlight: '🎁 Referral Airdrop (Open to all users)' }
+                ],
+                bonusText: ' Note: Terms & Conditions apply as per official MEXC rules. Contact Fei Fei (@feifeiS_MEXC_AffiliateBDM) for exclusive rebate links & VIP support!'
             }
         ];
 
@@ -882,7 +1020,6 @@
                 showToast('Cannot delete the last campaign!');
                 return;
             }
-            // Use standard confirm or direct removal if confirm is blocked
             campaigns = campaigns.filter(c => c.id !== activeCampaignId);
             activeCampaignId = campaigns[0].id;
             localStorage.setItem('feifei_campaigns_data', JSON.stringify(campaigns));
