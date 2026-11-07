@@ -317,14 +317,14 @@
                     <!-- Campaign Card 1 -->
                     <div class="w-[320px] sm:w-[420px] md:w-[460px] snap-start bg-[#0b0e11] border border-[#23272e] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#fcd535]/50 transition group shrink-0">
                         <div>
-                            <!-- Campaign Image Banner (Increased height to prevent cutoff) -->
-                            <div class="relative h-56 sm:h-64 w-full bg-[#181a20] overflow-hidden">
+                            <!-- Campaign Image Banner (Using object-contain to display the entire banner perfectly) -->
+                            <div class="relative h-56 sm:h-64 w-full bg-[#181a20] overflow-hidden flex items-center justify-center p-2">
                                 <img id="camp1Img"
-                                     src="https://i.ibb.co/8D1bL96y/Prestige-3-0-Yacht-Rewards-Gala.png" 
-                                     data-img-en="https://i.ibb.co/hFsxS3Cw/Prestige-3-0-Bigger-Rewards-Await-1.png"
-                                     data-img-zh="https://i.ibb.co/FknH2DRz/Prestige-3-0-Exclusive-Rewards-Banner-2.png"
+                                     src="https://i.ibb.co/k2HcphyQ/ee8a97ee-aa52-429b-b42e-f6278bf6fc7c.png" 
+                                     data-img-en="https://i.ibb.co/k2HcphyQ/ee8a97ee-aa52-429b-b42e-f6278bf6fc7c.png"
+                                     data-img-zh="https://i.ibb.co/GfgFQ9PG/Prestige-3-Chinese-1200x675.png"
                                      alt="MEXC Prestige 3.0" 
-                                     class="campaign-banner-img w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
+                                     class="campaign-banner-img w-full h-full object-contain group-hover:scale-105 transition duration-300">
                                 <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-[#fcd535] text-[10px] font-extrabold px-2.5 py-1 rounded-md border border-[#fcd535]/30">
                                     ACTIVE TOURNAMENT
                                 </div>
@@ -336,8 +336,11 @@
                         </div>
                         <div class="p-6 pt-0">
                             <!-- CAMPAIGN LINK GOES HERE -->
-                            <a href="https://t.me/feifeiS_MEXC_AffiliateBDM" target="_blank" class="w-full py-3 px-4 rounded-xl bg-[#181a20] border border-[#fcd535]/40 text-[#fcd535] font-bold text-xs hover:bg-[#fcd535] hover:text-black transition flex items-center justify-center gap-2">
-                                View Campaign Page <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            <a id="camp1Btn" href="https://www.mexc.fm/campaigns/SEA-MY-Prestige3?inviteCode=mexc-2768" 
+                               data-link-en="https://www.mexc.fm/campaigns/SEA-MY-Prestige3?inviteCode=mexc-2768"
+                               data-link-zh="https://www.mexc.fm/zh-hans/campaigns/SEA-MY-Prestige3?inviteCode=mexc-2768"
+                               target="_blank" class="w-full py-3 px-4 rounded-xl bg-[#181a20] border border-[#fcd535]/40 text-[#fcd535] font-bold text-xs hover:bg-[#fcd535] hover:text-black transition flex items-center justify-center gap-2">
+                                <span id="camp1BtnText">View Campaign Page</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
                     </div>
@@ -345,27 +348,30 @@
                     <!-- Campaign Card 2 -->
                     <div class="w-[320px] sm:w-[420px] md:w-[460px] snap-start bg-[#0b0e11] border border-[#23272e] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#00e5ff]/50 transition group shrink-0">
                         <div>
-                            <!-- Campaign Image Banner -->
-                            <div class="relative h-56 sm:h-64 w-full bg-[#181a20] overflow-hidden">
+                            <!-- Campaign Image Banner (Using object-contain to display the entire banner perfectly) -->
+                            <div class="relative h-56 sm:h-64 w-full bg-[#181a20] overflow-hidden flex items-center justify-center p-2">
                                 <img id="camp2Img"
-                                     src="https://placehold.co/600x400/181a20/00e5ff?text=EN+Campaign+Banner+2" 
-                                     data-img-en="https://placehold.co/600x400/181a20/00e5ff?text=EN+Campaign+Banner+2"
-                                     data-img-zh="https://placehold.co/600x400/181a20/00e5ff?text=ZH+Campaign+Banner+2"
-                                     alt="New User Mystery Boxes" 
-                                     class="campaign-banner-img w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
+                                     src="https://i.ibb.co/ZzWFrWG6/Gold-Fever-Trade-More-Earn-Gold-1.png" 
+                                     data-img-en="https://i.ibb.co/ZzWFrWG6/Gold-Fever-Trade-More-Earn-Gold-1.png"
+                                     data-img-zh="https://i.ibb.co/MDLpHYmb/Gold-Fever-2.png"
+                                     alt="Gold Fever: Trade More, Earn GOLD!" 
+                                     class="campaign-banner-img w-full h-full object-contain group-hover:scale-105 transition duration-300">
                                 <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-[#00e5ff] text-[10px] font-extrabold px-2.5 py-1 rounded-md border border-[#00e5ff]/30">
                                     REWARD EVENT
                                 </div>
                             </div>
                             <div class="p-6 space-y-3">
-                                <h4 id="camp2Title" class="text-white font-bold text-base">New User Mystery Boxes</h4>
-                                <p id="camp2Desc" class="text-xs text-gray-400 leading-relaxed">Give your invited users guaranteed futures bonus vouchers, deposit matches, and VIP trial passes upon registration.</p>
+                                <h4 id="camp2Title" class="text-white font-bold text-base">Gold Fever: Trade More, Earn GOLD!</h4>
+                                <p id="camp2Desc" class="text-xs text-gray-400 leading-relaxed">Love trading? Unlock up to $1,288 in GOLD rewards, exclusive airdrops & more. Join now!</p>
                             </div>
                         </div>
                         <div class="p-6 pt-0">
                             <!-- CAMPAIGN LINK GOES HERE -->
-                            <a href="https://t.me/feifeiS_MEXC_AffiliateBDM" target="_blank" class="w-full py-3 px-4 rounded-xl bg-[#181a20] border border-[#00e5ff]/40 text-[#00e5ff] font-bold text-xs hover:bg-[#00e5ff] hover:text-black transition flex items-center justify-center gap-2">
-                                View Campaign Page <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            <a id="camp2Btn" href="https://www.mexc.fm/register?previous=%2Fcampaigns%2FSEARefer1%3FinviteCode%3Dmexc-2768" 
+                               data-link-en="https://www.mexc.fm/register?previous=%2Fcampaigns%2FSEARefer1%3FinviteCode%3Dmexc-2768"
+                               data-link-zh="https://www.mexc.fm/zh-hans/campaigns/SEARefer1?inviteCode=mexc-2768"
+                               target="_blank" class="w-full py-3 px-4 rounded-xl bg-[#181a20] border border-[#00e5ff]/40 text-[#00e5ff] font-bold text-xs hover:bg-[#00e5ff] hover:text-black transition flex items-center justify-center gap-2">
+                                <span id="camp2BtnText">View Campaign Page</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
                     </div>
@@ -374,13 +380,13 @@
                     <div class="w-[320px] sm:w-[420px] md:w-[460px] snap-start bg-[#0b0e11] border border-[#23272e] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#0ecb81]/50 transition group shrink-0">
                         <div>
                             <!-- Campaign Image Banner -->
-                            <div class="relative h-56 sm:h-64 w-full bg-[#181a20] overflow-hidden">
+                            <div class="relative h-56 sm:h-64 w-full bg-[#181a20] overflow-hidden flex items-center justify-center p-2">
                                 <img id="camp3Img"
-                                     src="https://placehold.co/600x400/181a20/0ecb81?text=EN+Campaign+Banner+3" 
-                                     data-img-en="https://placehold.co/600x400/181a20/0ecb81?text=EN+Campaign+Banner+3"
-                                     data-img-zh="https://placehold.co/600x400/181a20/0ecb81?text=ZH+Campaign+Banner+3"
+                                     src="https://i.ibb.co/7dbj1f6S/COMING-SOON-Golden-Orbital-Glow.png" 
+                                     data-img-en="https://i.ibb.co/7dbj1f6S/COMING-SOON-Golden-Orbital-Glow.png"
+                                     data-img-zh="https://i.ibb.co/7dbj1f6S/COMING-SOON-Golden-Orbital-Glow.png"
                                      alt="Global Roadshow & Meetups" 
-                                     class="campaign-banner-img w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
+                                     class="campaign-banner-img w-full h-full object-contain group-hover:scale-105 transition duration-300">
                                 <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-[#0ecb81] text-[10px] font-extrabold px-2.5 py-1 rounded-md border border-[#0ecb81]/30">
                                     GLOBAL SPONSORSHIP
                                 </div>
@@ -392,8 +398,11 @@
                         </div>
                         <div class="p-6 pt-0">
                             <!-- CAMPAIGN LINK GOES HERE -->
-                            <a href="https://t.me/feifeiS_MEXC_AffiliateBDM" target="_blank" class="w-full py-3 px-4 rounded-xl bg-[#181a20] border border-[#0ecb81]/40 text-[#0ecb81] font-bold text-xs hover:bg-[#0ecb81] hover:text-black transition flex items-center justify-center gap-2">
-                                View Campaign Page <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            <a id="camp3Btn" href="https://x.com/feifei_MEXC/status/2118220805821899092?a=IMFmzTZFHZ0p0BsyQIs&s=20" 
+                               data-link-en="https://x.com/feifei_MEXC/status/2118220805821899092?a=IMFmzTZFHZ0p0BsyQIs&s=20"
+                               data-link-zh="https://x.com/feifei_MEXC/status/2118220805821899092?a=IMFmzTZFHZ0p0BsyQIs&s=20"
+                               target="_blank" class="w-full py-3 px-4 rounded-xl bg-[#181a20] border border-[#0ecb81]/40 text-[#0ecb81] font-bold text-xs hover:bg-[#0ecb81] hover:text-black transition flex items-center justify-center gap-2">
+                                <span id="camp3BtnText">View Campaign Page</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
                     </div>
@@ -402,13 +411,13 @@
                     <div class="w-[320px] sm:w-[420px] md:w-[460px] snap-start bg-[#0b0e11] border border-[#23272e] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#fcd535]/50 transition group shrink-0">
                         <div>
                             <!-- Campaign Image Banner -->
-                            <div class="relative h-56 sm:h-64 w-full bg-[#181a20] overflow-hidden">
+                            <div class="relative h-56 sm:h-64 w-full bg-[#181a20] overflow-hidden flex items-center justify-center p-2">
                                 <img id="camp4Img"
-                                     src="https://placehold.co/600x400/181a20/fcd535?text=EN+Campaign+Banner+4" 
-                                     data-img-en="https://placehold.co/600x400/181a20/fcd535?text=EN+Campaign+Banner+4"
-                                     data-img-zh="https://placehold.co/600x400/181a20/fcd535?text=ZH+Campaign+Banner+4"
+                                     src="https://i.ibb.co/7dbj1f6S/COMING-SOON-Golden-Orbital-Glow.png" 
+                                     data-img-en="https://i.ibb.co/7dbj1f6S/COMING-SOON-Golden-Orbital-Glow.png"
+                                     data-img-zh="https://i.ibb.co/7dbj1f6S/COMING-SOON-Golden-Orbital-Glow.png"
                                      alt="VIP Liquidity Incentive" 
-                                     class="campaign-banner-img w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
+                                     class="campaign-banner-img w-full h-full object-contain group-hover:scale-105 transition duration-300">
                                 <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-[#fcd535] text-[10px] font-extrabold px-2.5 py-1 rounded-md border border-[#fcd535]/30">
                                     QUANT REBATE
                                 </div>
@@ -420,8 +429,11 @@
                         </div>
                         <div class="p-6 pt-0">
                             <!-- CAMPAIGN LINK GOES HERE -->
-                            <a href="https://t.me/feifeiS_MEXC_AffiliateBDM" target="_blank" class="w-full py-3 px-4 rounded-xl bg-[#181a20] border border-[#fcd535]/40 text-[#fcd535] font-bold text-xs hover:bg-[#fcd535] hover:text-black transition flex items-center justify-center gap-2">
-                                View Campaign Page <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            <a id="camp4Btn" href="https://x.com/feifei_MEXC/status/2117871580848201968?a=fzTzQmZHAzmUfqQDum4&s=20" 
+                               data-link-en="https://x.com/feifei_MEXC/status/2117871580848201968?a=fzTzQmZHAzmUfqQDum4&s=20"
+                               data-link-zh="https://x.com/feifei_MEXC/status/2117871580848201968?a=fzTzQmZHAzmUfqQDum4&s=20"
+                               target="_blank" class="w-full py-3 px-4 rounded-xl bg-[#181a20] border border-[#fcd535]/40 text-[#fcd535] font-bold text-xs hover:bg-[#fcd535] hover:text-black transition flex items-center justify-center gap-2">
+                                <span id="camp4BtnText">View Campaign Page</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
                     </div>
@@ -452,22 +464,7 @@
                 <div class="lg:col-span-6 bg-[#0b0e11] border border-[#23272e] p-6 sm:p-8 rounded-3xl space-y-6 flex flex-col justify-between">
                     <div class="space-y-5">
 
-                        <!-- Mode Switcher (Trader Rebate vs Affiliate Commission) -->
-                        <div class="space-y-2">
-                            <label id="modeLabel" class="text-xs font-bold text-gray-300">Calculation Mode</label>
-                            <div class="grid grid-cols-2 gap-3">
-                                <button type="button" id="btnModeTrader" onclick="setCalcMode('trader')" class="py-3 px-3 rounded-xl bg-[#00e5ff]/10 border-2 border-[#00e5ff] text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 transition cursor-pointer">
-                                    <span id="modeTraderTitle">Trader Rebate</span>
-                                    <span id="modeTraderSub" class="text-[10px] text-[#00e5ff]">Own Trading Volume</span>
-                                </button>
-                                <button type="button" id="btnModeAffiliate" onclick="setCalcMode('affiliate')" class="py-3 px-3 rounded-xl bg-[#181a20] border border-[#23272e] text-gray-400 font-bold text-xs flex flex-col items-center justify-center gap-0.5 transition cursor-pointer hover:border-gray-600">
-                                    <span id="modeAffiliateTitle">Affiliate Commission</span>
-                                    <span id="modeAffiliateSub" class="text-[10px] text-gray-500">Referred Volume</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Volume Input (Slider + Manual Input) -->
+                        <!-- Volume Slider -->
                         <div class="space-y-2">
                             <div class="flex justify-between items-center gap-2">
                                 <label id="volumeLabel" class="text-xs font-bold text-gray-300">Est. Monthly Volume ($)</label>
@@ -621,11 +618,11 @@
                             <button onclick="copyToClipboard('@feifeiS_MEXC_AffiliateBDM')" class="py-2.5 px-3 rounded-xl bg-[#1f232b] hover:bg-[#2a303c] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition border border-[#2a303c] cursor-pointer">
                                 Copy <i class="fa-regular fa-copy text-[11px] text-gray-400"></i>
                             </button>
-                            <a href="https://t.me/feifeiS_MEXC_AffiliateBDM" target="_blank" class="py-2.5 px-3 rounded-xl bg-[#fcd535] hover:bg-[#f3cb23] text-black font-extrabold text-xs flex items-center justify-center gap-1 transition shadow-md">
+                            <a href="https://t.me/feifeiS_MEXC_AffiliateBDM" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-[#fcd535] hover:bg-[#f3cb23] text-black font-extrabold text-xs flex items-center justify-center gap-1 transition shadow-md cursor-pointer">
                                 Open TG <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
                         </div>
-                        <a href="https://www.mexc.com/official-verify" target="_blank" class="w-full py-2 px-3 rounded-xl bg-[#181a20] hover:bg-[#23272e] border border-[#23272e] hover:border-[#0ecb81]/50 text-[#0ecb81] font-semibold text-[11px] flex items-center justify-center gap-1.5 transition">
+                        <a href="https://www.mexc.fm/official-verify" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 rounded-xl bg-[#181a20] hover:bg-[#23272e] border border-[#23272e] hover:border-[#0ecb81]/50 text-[#0ecb81] font-semibold text-[11px] flex items-center justify-center gap-1.5 transition">
                             <i class="fa-solid fa-shield-halved text-[10px]"></i> Open MEXC Verify
                         </a>
                     </div>
@@ -646,7 +643,7 @@
                         <button onclick="copyToClipboard('@feifei_mexc')" class="py-2.5 px-3 rounded-xl bg-[#1f232b] hover:bg-[#2a303c] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition border border-[#2a303c] cursor-pointer">
                             Copy <i class="fa-regular fa-copy text-[11px] text-gray-400"></i>
                         </button>
-                        <a href="https://twitter.com/feifei_mexc" target="_blank" class="py-2.5 px-3 rounded-xl bg-[#00e5ff] hover:bg-[#00b8d4] text-black font-extrabold text-xs flex items-center justify-center gap-1 transition shadow-md">
+                        <a href="https://twitter.com/feifei_mexc" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-[#00e5ff] hover:bg-[#00b8d4] text-black font-extrabold text-xs flex items-center justify-center gap-1 transition shadow-md">
                             Visit Profile <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
                     </div>
@@ -667,7 +664,7 @@
                         <button onclick="copyToClipboard('@heyyfeifei_')" class="py-2.5 px-3 rounded-xl bg-[#1f232b] hover:bg-[#2a303c] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition border border-[#2a303c] cursor-pointer">
                             Copy <i class="fa-regular fa-copy text-[11px] text-gray-400"></i>
                         </button>
-                        <a href="https://www.tiktok.com/@heyyfeifei_" target="_blank" class="py-2.5 px-3 rounded-xl bg-[#00e5ff] hover:bg-[#00b8d4] text-black font-extrabold text-xs flex items-center justify-center gap-1 transition shadow-md">
+                        <a href="https://www.tiktok.com/@heyyfeifei_" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-[#00e5ff] hover:bg-[#00b8d4] text-black font-extrabold text-xs flex items-center justify-center gap-1 transition shadow-md">
                             Visit Profile <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
                     </div>
@@ -693,7 +690,7 @@
                                 Email Me <i class="fa-solid fa-paper-plane text-[10px]"></i>
                             </a>
                         </div>
-                        <a href="https://www.mexc.com/official-verify" target="_blank" class="w-full py-2 px-3 rounded-xl bg-[#181a20] hover:bg-[#23272e] border border-[#23272e] hover:border-[#0ecb81]/50 text-[#0ecb81] font-semibold text-[11px] flex items-center justify-center gap-1.5 transition">
+                        <a href="https://www.mexc.fm/official-verify" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 rounded-xl bg-[#181a20] hover:bg-[#23272e] border border-[#23272e] hover:border-[#0ecb81]/50 text-[#0ecb81] font-semibold text-[11px] flex items-center justify-center gap-1.5 transition">
                             <i class="fa-solid fa-shield-halved text-[10px]"></i> Open MEXC Verify
                         </a>
                     </div>
@@ -754,6 +751,28 @@
                     img.src = targetUrl;
                 }
             });
+
+            // Update Campaign Button Links based on selected language
+            const camp1Btn = document.getElementById('camp1Btn');
+            if (camp1Btn) {
+                const targetLink = langKey === 'zh' ? camp1Btn.getAttribute('data-link-zh') : camp1Btn.getAttribute('data-link-en');
+                if (targetLink) camp1Btn.href = targetLink;
+            }
+            const camp2Btn = document.getElementById('camp2Btn');
+            if (camp2Btn) {
+                const targetLink = langKey === 'zh' ? camp2Btn.getAttribute('data-link-zh') : camp2Btn.getAttribute('data-link-en');
+                if (targetLink) camp2Btn.href = targetLink;
+            }
+            const camp3Btn = document.getElementById('camp3Btn');
+            if (camp3Btn) {
+                const targetLink = langKey === 'zh' ? camp3Btn.getAttribute('data-link-zh') : camp3Btn.getAttribute('data-link-en');
+                if (targetLink) camp3Btn.href = targetLink;
+            }
+            const camp4Btn = document.getElementById('camp4Btn');
+            if (camp4Btn) {
+                const targetLink = langKey === 'zh' ? camp4Btn.getAttribute('data-link-zh') : camp4Btn.getAttribute('data-link-en');
+                if (targetLink) camp4Btn.href = targetLink;
+            }
 
             const menu = document.getElementById('langDropdownMenu');
             const chevron = document.getElementById('langChevron');
@@ -963,10 +982,12 @@
                 campaignTitleEl: 'MEXC VIP <span class="gradient-text">Exclusive Campaigns</span>',
                 campaignSubEl: 'Unlock sponsored trading competition prize pools, custom referral tournament banners, and high-tier liquidity incentives.',
                 btnCampaignHeaderEl: '<i class="fa-brands fa-telegram text-base"></i> Apply For Campaign Sponsorship',
-                camp1Title: 'Custom Trading Tournaments',
-                camp1Desc: 'Host community trading showdowns with up to $50,000 in MEXC-sponsored prize pools and zero cost to your group.',
-                camp2Title: 'New User Mystery Boxes',
-                camp2Desc: 'Give your invited users guaranteed futures bonus vouchers, deposit matches, and VIP trial passes upon registration.',
+                camp1Title: 'Prestige 3.0: Trade More, Unlock Bigger Rewards!',
+                camp1Desc: '1,000 USDT Airdrop Position, 50g Gold Bar & Luxury Thailand Yacht Party Big Rewards Await!',
+                camp1BtnText: 'View Campaign Page',
+                camp2Title: 'Gold Fever: Trade More, Earn GOLD!',
+                camp2Desc: 'Love trading? Unlock up to $1,288 in GOLD rewards, exclusive airdrops & more. Join now!',
+                camp2BtnText: 'View Campaign Page',
                 camp3Title: 'Global Roadshow & Meetups',
                 camp3Desc: 'Co-sponsor regional Web3 dinners and crypto conferences with official MEXC branding and speaker support.',
                 calcBadgeEl: '<i class="fa-solid fa-calculator"></i> Earnings Estimator',
@@ -1036,10 +1057,12 @@
                 campaignTitleEl: 'MEXC VIP <span class="gradient-text">专属重磅活动</span>',
                 campaignSubEl: '解锁官方全额赞助的交易争霸赛奖励池、专属邀請海报與顶级流動性激励政策。',
                 btnCampaignHeaderEl: '<i class="fa-brands fa-telegram text-base"></i> 申请活动官方赞助',
-                camp1Title: '社群专属交易争霸赛',
-                camp1Desc: '为您的社群定制交易大赛，最高可享 $50,000 MEXC 官方奖金池赞助，社群运营零成本。',
-                camp2Title: '新用户注册盲盒大礼',
-                camp2Desc: '为受邀新用户提供合约体验金、首充加码返利及 VIP 试用卡，大幅提升入金转化率。',
+                camp1Title: 'Prestige 3.0: 交易解锁更丰厚奖励！',
+                camp1Desc: '1,000 USDT 空投额度、50g 纯金金条及豪华泰国游艇盛宴等重磅大奖等你来赢！',
+                camp1BtnText: '查看活动详情页面',
+                camp2Title: 'Gold Fever 黃金狂熱：交易越多，黃金獎勵越多！',
+                camp2Desc: '喜歡交易？解鎖最高 $1,288 黃金獎勵、專屬空投及更多福利！立即參與！',
+                camp2BtnText: '查看活动详情页面',
                 camp3Title: '全球 Web3 峰会與聚会',
                 camp3Desc: '与官方携手赞助海内外线下私密晚宴與加密峰会，享受顶级品牌曝光與嘉宾支持。',
                 calcBadgeEl: '<i class="fa-solid fa-calculator"></i> 收益预估器',
